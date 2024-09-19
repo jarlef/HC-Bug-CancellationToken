@@ -1,3 +1,4 @@
+using HCBugCancellationToken.Models;
 using Serilog;
 
 namespace HCBugCancellationToken.Types;
@@ -5,24 +6,15 @@ namespace HCBugCancellationToken.Types;
 [QueryType]
 public static class Query
 {
-    public static async Task<string> Foo(CancellationToken cancellationToken)
+    public static Movie[] GetMovies()
     {
-        try
-        {
-            Log.Information("This can take some while..");
-            await Task.Delay(30_000, cancellationToken);
-            Log.Information("Waiting done! Time to return result");
-            return DateTime.Now.ToShortTimeString();
-        }
-        catch (OperationCanceledException)
-        {
-            // OperationCanceledException is never getting thrown
-            Log.Error("Something happened");
-            throw;
-        }
-        finally
-        {
-            Log.Information("Finally done");
-        }
+        return
+        [
+            new Movie() {Id = 1, Name = "Terminator 1"},
+            new Movie() {Id = 2, Name = "Terminator 2"},
+            new Movie() {Id = 3, Name = "Shaun the Sheep"}
+        ];
     }
+    
+    
 }

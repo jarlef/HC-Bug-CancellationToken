@@ -1,0 +1,39 @@
+
+###
+# @name without using dataloader in resolver (works)
+
+POST http://localhost:5095/graphql
+Referer: http://localhost:5095/graphql/static/js/document.bc211eb0.chunk.js
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+Content-Type: application/json
+
+{
+  "query": "{  movies { id name rating }}"
+  
+}
+
+###
+# @name using [DataLoader] annotated dataloader in resolver (does not work)
+
+POST http://localhost:5095/graphql
+Referer: http://localhost:5095/graphql/static/js/document.bc211eb0.chunk.js
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+Content-Type: application/json
+
+{
+  "query": "{  movies { id name ratingWithDL }}"
+
+}
+
+###
+# @name using classic class based dataloader in resolver (does not work)
+
+POST http://localhost:5095/graphql
+Referer: http://localhost:5095/graphql/static/js/document.bc211eb0.chunk.js
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+Content-Type: application/json
+
+{
+  "query": "{  movies { id name ratingWithDL2 }}"
+
+}
