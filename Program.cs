@@ -13,4 +13,4 @@ var app = builder.Build();
 
 app.MapGraphQL();
 
-app.RunWithGraphQLCommands(args);
+await app.RunAsync();

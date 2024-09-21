@@ -7,6 +7,8 @@ public class MovieRatingDataLoaderClassic(IBatchScheduler batchScheduler, DataLo
 {
     protected override async Task<IReadOnlyDictionary<int, int>> LoadBatchAsync(IReadOnlyList<int> movieIds, CancellationToken cancellationToken)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         var rating = await RatingService.GetRating(cancellationToken);
         return movieIds.ToDictionary(id => id, _ => rating);
     }

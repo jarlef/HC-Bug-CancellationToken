@@ -10,6 +10,8 @@ internal static class MovieRatingDataLoaderAnnotated
         CancellationToken cancellationToken
     )
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        
         var rating = await RatingService.GetRating(cancellationToken);
         return movieIds.ToDictionary(id => id, _ => rating);
     }
